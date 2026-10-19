@@ -26,8 +26,8 @@ class HttpException extends \RuntimeException implements ClientExceptionInterfac
                 default => new HttpSuccessException($request, $response, $message, $previous)
             },
             ($code >= 300 && $code < 400) => match ($code) {
-                301 => new FoundException($request, $response, $message, $previous),
-                302 => new HttpRedirectionException($request, $response, $message, $previous),
+                301 => new MovedPermanentlyException($request, $response, $message, $previous),
+                302 => new FoundException($request, $response, $message, $previous),
                 default => new HttpRedirectionException($request, $response, $message, $previous)
             },
             ($code >= 400 && $code < 500) => match ($code) {

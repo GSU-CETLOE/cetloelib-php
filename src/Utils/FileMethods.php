@@ -145,7 +145,7 @@ class FileMethods
     ): int {
         $contents = (is_array($contents) ? implode(PHP_EOL, $contents) : $contents) . PHP_EOL;
         $bytes = file_put_contents($path, $contents);
-        return $bytes === strlen($contents)
+        return is_int($bytes) && $bytes === strlen($contents)
             ? $bytes
             : throw new \RuntimeException("Error writing to file: {$path}");
     }

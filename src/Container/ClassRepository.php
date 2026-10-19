@@ -119,10 +119,11 @@ class ClassRepository
 
 
     /**
-     * @param \ReflectionClass<object> $refClass
+     * @template TClass of object
+     * @template T
+     * @param \ReflectionClass<TClass> $refClass
      * @param class-string<T> $name
      * @return T|null
-     * @template T
      */
     public static function getAttribute(
         \ReflectionClass $refClass,

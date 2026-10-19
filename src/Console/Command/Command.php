@@ -78,7 +78,6 @@ abstract class Command extends SymfonyCommand implements LoggerAwareInterface
             return;
         }
 
-        $result = [];
         $starter = is_array($seen)
             ? 'Caused by: '
             : sprintf("Error in %s - ", $input->__toString());
@@ -102,7 +101,7 @@ abstract class Command extends SymfonyCommand implements LoggerAwareInterface
         do {
             $current = "{$file}:{$line}";
             if (in_array($current, $seen, true)) {
-                $result[] = sprintf(' ... %d more', count($trace) + 1);
+                $this->logger?->error(sprintf(' ... %d more', count($trace) + 1));
                 break;
             } else {
                 $seen[] = $current;

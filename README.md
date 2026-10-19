@@ -24,14 +24,31 @@ composer install
 composer require gsu-cetloe/cetloelib-php
 ```
 
-## Static analysis
+## Checks
 
-PHPStan runs at level 9 and PHP_CodeSniffer checks PSR-12. Both must pass clean:
+PHPStan runs at level 9 with the strict, deprecation, and PHPUnit rule sets. PHP_CodeSniffer checks PSR-12. PHPUnit runs the test suite with warnings, notices, deprecations, and stray output all treated as failures. Run everything with:
 
 ```sh
-composer phpstan
-composer phpcs
+composer check
 ```
+
+Or one at a time:
+
+```sh
+composer phpcs
+composer phpstan
+composer test
+```
+
+Caches and scratch files from these tools land in `working/`, which is ignored by git.
+
+## Tests
+
+Tests live in `tests/` and mirror the `src/` layout. They use real objects throughout: a real PHP-DI container, real Monolog handlers writing to a scratch directory, and a real Symfony Application. The HTTP client tests replay canned responses through Guzzle's MockHandler so no network is involved.
+
+`tests/Fixtures/App` is a small fixture application (commands, a definition source, a logger-aware service, and a set of shapes) that the Container, Logger, and Console tests load through the same `Env` and `ClassRepository` path a real application would use.
+
+See [TESTPLAN.md](TESTPLAN.md) for the manual checklist.
 
 ## History
 

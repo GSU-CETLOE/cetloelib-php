@@ -28,7 +28,7 @@ final class ObjectFactory
                 );
         } catch (\Throwable $t) {
             throw new \RuntimeException(
-                message: "Error creating instance: {$className}}",
+                message: "Error creating instance: {$className}",
                 previous: $t
             );
         }
