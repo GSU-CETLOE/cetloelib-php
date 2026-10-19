@@ -1,0 +1,2 @@
+# mjfklib/httpclient
+Extensions for [Guzzle HTTP client](https://github.com/guzzle/guzzle) and DI bindings for [PSR-17](https://github.com/php-fig/http-factory) and [PSR-18](https://github.com/php-fig/http-client).
